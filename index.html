@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #converter {
+            margin: 50px auto;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            animation: snakeMove 5s linear infinite;
+        }
+
+        @keyframes snakeMove {
+            0%, 50% {
+                transform: translateX(20px);
+            }
+            5% {
+                transform: translateX(10px) translateY(20px);
+            }
+            10% {
+                transform: translateX(20px) translateY(20px);
+            }
+            15% {
+                transform: translateX(0) translateY(20px);
+            }
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scale(8);
+            }
+            10% {
+                transform: scale(2.1);
+            }
+            50% {
+                transform: scale(3);
+            }
+        }
+
+        #animated {
+            animation: animate 8s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="converter">
+        <h1>Area Converter</h1>
+        <div class="input-group">
+            <label for="yards">Yards:</label>
+            <input type="text" id="yards">
+        </div>
+        <div class="input-group">
+            <label for="sqfeet">Square Feet:</label>
+            <input type="text" id="sqfeet">
+        </div>
+        <button id="convert">Convert</button>
+        <div id="result"></div>
+        <div id="animated">&#9733;</div>
+    </div>
+
+    <script>
+        document.getElementById("convert").addEventListener("click", function () {
+            const yards = parseFloat(document.getElementById("yards").value);
+            if (!isNaN(yards)) {
+                const sqfeet = yards * 9; // 1 Yard = 9 Square Feet
+                document.getElementById("sqfeet").value = sqfeet.toFixed(2);
+                document.getElementById("result").textContent = `Converted: ${sqfeet.toFixed(2)} sqft`;
+            } else {
+                document.getElementById("result").textContent = "Please enter a valid Yard value.";
+            }
+        });
+    </script>
+</body>
+</html>

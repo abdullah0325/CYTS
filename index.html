@@ -93,21 +93,24 @@
 <body>
     <div id="converter">
         <h1>Area Converter</h1>
-        <div class="input-group">
-            <label for="yards">Yards:</label>
-            <input type="text" id="yards">
-        </div>
-        <div class="input-group">
-            <label for="sqfeet">Square Feet:</label>
-            <input type="text" id="sqfeet">
-        </div>
-        <button id="convert">Convert</button>
+        <form onsubmit="convertArea(event)">
+            <div class="input-group">
+                <label for="yards">Yards:</label>
+                <input type="text" id="yards" required>
+            </div>
+            <div class="input-group">
+                <label for="sqfeet">Square Feet:</label>
+                <input type="text" id="sqfeet">
+            </div>
+            <button type="submit">Convert</button>
+        </form>
         <div id="result"></div>
         <div id="animated">&#9733;</div>
     </div>
 
     <script>
-        document.getElementById("convert").addEventListener("click", function () {
+        function convertArea(event) {
+            event.preventDefault();
             const yards = parseFloat(document.getElementById("yards").value);
             if (!isNaN(yards)) {
                 const sqfeet = yards * 9; // 1 Yard = 9 Square Feet
@@ -116,7 +119,7 @@
             } else {
                 document.getElementById("result").textContent = "Please enter a valid Yard value.";
             }
-        });
+        }
     </script>
 </body>
 </html>
